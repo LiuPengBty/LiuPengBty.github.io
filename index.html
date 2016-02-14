@@ -1,54 +1,36 @@
 ---
 layout: default
-index: true
 ---
 
+{% for post in paginator.posts %}
 
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-7">
-              <!-- Blog Post Links -->
-              <div class="blog-post-small">
-                {% for post in site.posts %}
-                  <h3><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
-                  <p><i class="fa fa-calendar"></i> &nbsp;{{ post.date | date: "%b %-d, %Y" }} | {% if site.disqus_short_name and page.comments != false and site.disqus_show_comment_count == true %}
-         <a href="{% if page.index %}{{ root_url }}{{ post.url }}{% endif %}#disqus_thread">Comments</a>
-        {% endif %}</p>
-                  {% if post.content contains '<!-- more -->' %}
-                    <p>{{ post.content | split:'<!-- more -->' | first }}
-                      <br><br>
-                      <a href="{{ post.url }}"class="btn btn-primary btn-sm">Read More</a>
-                    </p>
-                  {% else %}
-                    {{ post.content }}
-                  {% endif %}
-                {% endfor %}
-              </div>
-              <!-- End Blog Post Links -->
-            </div>
-            <!-- SideBar -->
-            <div class="col-md-3">
-              {% if site.feedburner_username %}
-               <div class="panel panel-primary" style="margin-top:10%;">
-                  <div class="panel-body">
-                    
-                     <form action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri={{site.feedburner_username}}', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
-                        <div class="input-group">
-                        <input type="text" class="form-control" name="email"/>
-                        <input type="hidden" value="maangalabs" name="uri"/>
-                        <input type="hidden" name="loc" value="en_US"/>
-                        <span class="input-group-btn">
-                          <input type="submit" class="btn btn-primary" value="Subscribe Us" />
-                        </span>
-                      </div>
-                      <p><a href="http://feeds.feedburner.com/{{site.feedburner_username}}"><img style="margin-left:auto;margin-right:auto;" src="http://feeds.feedburner.com/~fc/{{site.feedburner_username}}?bg=007196&amp;fg=FFFFFF&amp;anim=1" height="26" width="88" style="border:1;" alt="" /></a></form>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-                  </div>
+    <div class="main-content" itemprop="articleBody">
 
-                </div>
-                {% endif %}
-            </div>
-            <!-- End Sidebar -->
-            <div class="col-md-1"></div>
-         </div>
+  <header class="post-header">
+      <a class="post-link" href="{{ post.url | prepend: site.baseurl }}"><h1 class="post-title" itemprop="name headline">  {{ post.title }}</h1> </a>
 
+  </header>
+
+    {{ post.content }}
+
+ <p class="post-meta" style="text-align: right; color: rgb(152,152,152);"><time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ post.author }}</span></span>{% endif %} • <a href="{{ post.url | prepend: site.baseurl }}">permalink</a></p>
+
+  </div>
+
+</article>
+
+{% endfor %}
+
+<div class="pagination" style="text-align: center;">
+
+  {% if paginator.next_page %}
+    <h2><a href="{{ paginator.next_page_path }}" class="next">- more posts -</a></h2>
+  {% endif %}
+
+  {% if paginator.previous_page %}
+    <h2><a href="{{ paginator.previous_page_path }}" class="previous">- previous page -</a></h2>
+  {% endif %}
+
+</div>
