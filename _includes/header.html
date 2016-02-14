@@ -1,51 +1,37 @@
-<header id="main-header" data-height-onload="66">
-	<div class="container clearfix et_menu_container">
-		<div class="logo_container">
-			<span class="logo_helper"></span>
-			<a href="{{ site.baseurl }}/">
-				<!--img src="http://blog.ibireme.com/wp-content/uploads/2015/05/logo1.png" alt="Garan no dou" id="logo" data-height-percentage="54" /-->
-				{{ site.theme.yoursitetitle }}
-			</a>
-		</div>
-		<div id="et-top-navigation" data-height="66" data-fixed-height="40">
-			<nav id="top-menu-nav">
-				<ul id="top-menu" class="nav">
-					<li>
-						<a class="page-link" href="{{ site.baseurl }}/">
-							{{ site.theme.hometitle }}
-						</a>
-					</li>
-					{% for page in site.pages %}
-					{% if page.title and page.hide != true %}
-					<li>
-						<a class="page-link" href="{{ page.url | prepend: site.baseurl }}">
-							{{ page.title }}
-						</a>
-					</li>
-					{% endif %}
-					{% endfor %}
-					<!-- Social icons from Font Awesome, if enabled -->
-					<li>
-						<a class="page-link" href="">Find Me</a>
-						<ul class="children">{% include icons.html %}</ul>
-					</li>
-					
-				</ul>
-			</nav>
-
-			<div id="et_mobile_nav_menu">
-				<div class="mobile_nav closed">
-					<span class="select_page"></span>
-					<span class="mobile_menu_bar"></span>
-				</div>
-			</div>				
-		</div> <!-- #et-top-navigation -->
-	</div> <!-- .container -->
-	<div class="et_search_outer">
-		<div class="container et_search_form_container">
-			<form role="search" method="get" class="et-search-form" action="{{ site.url }}">
-			<input type="search" class="et-search-field" placeholder="搜索 &hellip;" value="" name="s" title="搜索：" /></form>
-			<span class="et_close_search_field"></span>
-		</div>
-	</div>
-</header> <!-- #main-header -->
+    <div class="col-md-12 navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{ site.baseurl }}/">{{ site.title }}</a>
+      </div>
+      <div class="navbar-collapse collapse navbar-inverse-collapse">
+        <ul class="nav navbar-nav">
+          {% for page in site.pages %}
+            {% if page.title %}
+              <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
+            {% endif %}
+          {% endfor %}
+          
+<!--           <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+            {% for page in site.pages %}
+              {% if page.title %}
+                <li><a href="{{ page.url | prepend: site.baseurl }}" style="text-transform : uppercase;">{{ page.title }}</a></li>
+              {% endif %}
+            {% endfor %}
+            </ul>
+          </li>
+ -->        </ul>
+       
+        <ul class="nav navbar-nav navbar-right left-syms">
+          <li><a href="https://facebook.com/{{site.fb_username}}" target="_blank"><i class="fa fa-facebook-square"></i> <span>Facebook</span></a></li>
+          <li><a href="http://github.com/{{ site.github_username}}" target="_blank"><i class="fa fa-github"></i> <span>Github</span></a></li>
+          <li><a href="//twitter.com/{{site.twitter_username}}" target="_blank"><i class="fa fa-twitter"></i> <span>Twitter</span></a></li>
+          <li><a href="{{ "/atom.xml" | prepend: site.baseurl | prepend: site.url }}" target="_blank"><i class="fa fa-rss"></i> <span>RSS Feed</span></a></li>
+        </ul>
+      </div>
+    </div>
