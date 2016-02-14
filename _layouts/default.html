@@ -1,23 +1,19 @@
+---
+layout: compress
+---
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
   {% include head.html %}
 
-  <body>
+  <body{% if page.body_class %} class="{{ page.body_class }}{% endif %}">
 
-    {% include header.html %}
-
-    <section class="main-content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
-    </div>
-
-    {% include footer.html %}
-
-
-  </body>
+    <main class="wrapper">
+      {% include header.html %}
+      {{ content }}
+      {% include footer.html %}
+    </main>
 
     {% include scripts.html %}
-
-</html>
+  </body>
+</html><!-- by nandomoreira.me -->

@@ -1,36 +1,20 @@
 ---
-layout: default
+layout: blank
+body_class: home-intro
 ---
 
-{% for post in paginator.posts %}
+<section class="intro">
+  {% include navbar.html %}
 
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="intro-in">
 
-    <div class="main-content" itemprop="articleBody">
+    <h1 class="intro-title">dot<strong>X</strong></h1>
+    <h2 class="intro-subtitle">Simple &amp; Beautiful Jekyll theme</h2>
 
-  <header class="post-header">
-      <a class="post-link" href="{{ post.url | prepend: site.baseurl }}"><h1 class="post-title" itemprop="name headline">  {{ post.title }}</h1> </a>
-
-  </header>
-
-    {{ post.content }}
-
- <p class="post-meta" style="text-align: right; color: rgb(152,152,152);"><time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ post.author }}</span></span>{% endif %} • <a href="{{ post.url | prepend: site.baseurl }}">permalink</a></p>
+    <nav class="intro-actions">
+      <a href="{{ site.repo }}/archive/master.zip" class="button button-ghost" role="button">Download</a>
+    </nav>
 
   </div>
 
-</article>
-
-{% endfor %}
-
-<div class="pagination" style="text-align: center;">
-
-  {% if paginator.next_page %}
-    <h2><a href="{{ paginator.next_page_path }}" class="next">- more posts -</a></h2>
-  {% endif %}
-
-  {% if paginator.previous_page %}
-    <h2><a href="{{ paginator.previous_page_path }}" class="previous">- previous page -</a></h2>
-  {% endif %}
-
-</div>
+</section>
