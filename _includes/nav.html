@@ -1,13 +1,28 @@
-<div id="nav-wrapper">
-	<!-- Nav -->
-	<nav id="nav">
-		<ul>
-			{% assign current = page.url | downcase | split: '/' %}
-			<li {% if current[1] == 'index.html' %}class='current'{% endif %}><a href="/index.html">Homepage</a></li>
-			<li {% if current[1] == 'blog' %}class='current'{% endif %}><a href="/blog">Blog</a></li>
-			<li {% if current[1] == 'left-sidebar.html' %}class='current'{% endif %}><a href="/left-sidebar.html">Left Sidebar</a></li>
-			<li {% if current[1] == 'right-sidebar.html' %}class='current'{% endif %}><a href="/right-sidebar.html">Right Sidebar</a></li>
-			<li {% if current[1] == 'no-sidebar.html' %}class='current'{% endif %}><a href="/no-sidebar.html">No Sidebar</a></li>
-		</ul>
-	</nav>
-</div>
+<ul id="nav">
+    {% assign level-1 = site.entries | where: "sectionclass", "h1" | sort: "number"%}
+    {% for entry in level-1 %}
+    <li {% if entry.is-parent or forloop.first %} class="{% if entry.is-parent %}parent{% endif %}{% if forloop.first %} current{% endif %}"{% endif %}>
+        <a href="#{{ entry.sectionid }}">{{ entry.title }}</a>
+        {% if entry.is-parent %}
+            <ul>
+                {% assign level-2 = site.entries | where: "parent-id", entry.sectionid | sort: "number" %}
+                {% for child in level-2 %}
+                    <li {% if child.is-parent %}class="parent"{% endif %}>
+                        <a href="#{{ child.sectionid }}">{{ child.title }}</a>
+                        {% if child.is-parent %}
+                            <ul>
+                                {% assign level-3 = site.entries | where: "parent-id", child.sectionid | sort: "number" %}
+                                {% for grandchild in level-3 %}
+                                <li>
+                                    <a href="#{{ grandchild.sectionid }}">{{ grandchild.title }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
