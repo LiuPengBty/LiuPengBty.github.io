@@ -1,44 +1,68 @@
-<!DOCTYPE HTML>
-<!--
-	Alpha by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>{{ page.title }}</title>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-			<!--[if lte IE 8]><script src="{{ site.baseurl }}/assets/css/ie/html5shiv.js"></script><![endif]-->
-		<script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
-		<script src="{{ site.baseurl }}/assets/js/jquery.dropotron.min.js"></script>
-		<script src="{{ site.baseurl }}/assets/js/skel.min.js"></script>
-		<script src="{{ site.baseurl }}/assets/js/skel-layers.min.js"></script>
-		<script src="{{ site.baseurl }}/assets/js/jquery.scrollgress.min.js"></script>
-		<script src="{{ site.baseurl }}/assets/js/init.js"></script>
-		<noscript>
-			<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/skel.css" />
-			<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css" />
-			<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style-desktop.css" />
-		</noscript>
-		<!--[if lte IE 8]><link rel="stylesheet" href="{{ site.baseurl }}/assets/css/ie/v8.css" /><![endif]-->
-	</head>
-	{% if page.url == "/index.html" %}
-		<!-- Banner -->
-		<body class="landing">
-			<section id="banner">
-				<h2>Alpha</h2>
-				<p>Another fine responsive site template freebie by HTML5 UP.</p>
-				<ul class="actions">
-					<li><a href="#" class="button special">Sign Up</a></li>
-					<li><a href="#" class="button">Learn More</a></li>
-				</ul>
-			</section>
-	{% else %}
-		<body>
-			<section id="banner"></section>
-	{% endif %}
-	{% include nav.html %}
-	<!-- Main -->
-	<section id="main" class="container">
+<header class="header">
+	<div class="header-container">
+		<div class="nav">
+			{% if page.path == "index.html" %}
+			<span class="title">
+				<li>
+					<a href="/index.html">home</a>
+				</li>
+			</span>			
+			{% else %}
+				<li>
+					<a href="/index.html">home</a>
+				</li>			
+			{% endif %}
+			{% if page.path == "archive.html" %}
+			<span class="title">
+				<li>
+					<a href="/archive.html">archive</a>
+				</li>
+			</span>			
+			{% else %}
+				<li>
+					<a href="/archive.html">archive</a>
+				</li>			
+			{% endif %}
+			{% if page.path == "category.html" %}
+			<span class="title">
+				<li>
+					<a href="/category.html">category</a>
+				</li>
+			</span>			
+			{% else %}
+				<li>
+					<a href="/category.html">category</a>
+				</li>			
+			{% endif %}
+			{% if page.path == "about.html" %}
+			<span class="title">
+				<li>
+					<a href="/about.html">about</a>
+				</li>
+			</span>			
+			{% else %}
+				<li>
+					<a href="/about.html">about</a>
+				</li>			
+			{% endif %}
+		</div>
+		<div class="description"> {{ site.motto }} </div>		
+		<ul class="social-links">
+			<li>
+				<a href="https://github.com/{{ site.github_username }}" title="Github">
+					<img width="19px" height="19px" src="/images/github.png"/>
+				</a>
+			</li>
+			<li>
+				<a href="/feed.xml" title="RSS">
+					<img width="19px" height="19px" src="/images/rss.png"/>
+				</a>
+			</li>
+			<li>
+				<a href="https://twitter.com/{{ site.twitter_username }}" title="Twitter">
+					<img width="19px" height="19px" src="/images/twitter.png"/>
+				</a>
+			</li>
+		</ul>		
+	</div>
+</header>
