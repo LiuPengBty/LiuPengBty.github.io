@@ -25,6 +25,9 @@
         {% endif %}
         <a href="{{ site.baseurl }}/">Home</a></li>
 
+        <li><a href="{% index %}">Next</a></li>
+        
+
         {% for p in site.pages %}
           {% if p.title %}
             {% if p.url == page.url %}
