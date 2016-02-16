@@ -18,15 +18,24 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
 
+        <li>
+        
+        <a href="/">Home</a></li>
+
+        <li>
+            
+            <a href="/projects/"><span class="glyphicon "></span> Projects</a></li>
+
+          <li>
+            
+          <a href="/about/"><span class="glyphicon "></span> About</a></li>
+
         {% if page.url == "/index.html" %}
           <li class="active">
           {% else %}
           <li>
         {% endif %}
         <a href="{{ site.baseurl }}/">Home</a></li>
-
-        <li><a href="{% index %}">Next</a></li>
-        
 
         {% for p in site.pages %}
           {% if p.title %}
