@@ -89,5 +89,58 @@ for (int i = 0; i < 10000; i++) {
  */
 ```
 
+## 下面还有一种用法
 
+The question is: How do I wait for an asynchronously dispatched block to finish, in ARC?
+
+SINGLE BLOCK
+
+```
+dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+
+[self methodWithABlock:^(id result){
+    //put code here
+    dispatch_semaphore_signal(sem);
+}];
+
+dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+```
+
+MULTIPLE BLOCKS
+
+```
+dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+
+[self methodWithABlock:^(id result){
+    //put code here
+    dispatch_semaphore_signal(sem);
+}];
+
+[self methodWithABlock:^(id result){
+    //put code here
+    dispatch_semaphore_signal(sem);
+}];
+
+dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+```
+
+BLOCK IN BLOCK
+
+```
+dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+
+[self methodWithABlock:^(id result){
+    //put code here
+    dispatch_semaphore_signal(sem);
+    
+    [self methodWithABlock:^(id result){
+        //put code here
+        dispatch_semaphore_signal(sem);
+    }];
+}];
+
+dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+```
 
